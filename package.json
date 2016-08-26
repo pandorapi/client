@@ -1,0 +1,41 @@
+{
+  "name": "pandora-client",
+  "version": "0.0.1",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "buffer-equal-constant-time": "^1.0.1",
+    "gport": "^1.1.0",
+    "libnmap": "^0.2.33",
+    "my-local-ip": "^1.0.0",
+    "myip": "^1.1.0",
+    "node-libnmap": "^0.2.15",
+    "rsa-keygen": "^1.0.6",
+    "simple-args": "^1.0.3",
+    "socket.io": "^1.4.8",
+    "socket.io-client": "^1.4.8",
+    "socket.io-stream": "^0.9.0",
+    "ssh2": "^0.5.0"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-autowatch": "^1.0.2",
+    "gulp-clean": "^0.3.2",
+    "gulp-clean-css": "^2.0.12",
+    "gulp-concat": "^2.6.0",
+    "gulp-exec": "^2.1.2",
+    "gulp-less": "^3.1.0",
+    "gulp-livereload": "^3.8.1",
+    "gulp-minify": "0.0.14",
+    "gulp-plumber": "^1.1.0",
+    "gulp-pug": "^3.0.4",
+    "gulp-rename": "^1.2.2",
+    "gulp-stylus": "^2.5.0"
+  }
+}
