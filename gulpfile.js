@@ -91,8 +91,9 @@ gulp.task('scripts', function() {
     gulp.src([
             paths.bower + "jquery/dist/jquery.min.js",
             paths.bower + "bootstrap/dist/js/bootstrap.min.js",
+            paths.bower + "jquery-rest-client/dist/jquery.restclient.min.js",
             // paths.toastr + "toastr.min.js",
-            // paths.vue + 'vue.min.js',
+            paths.bower + 'vue/dist/vue.min.js',
             paths.assets.js + '*.js'
         ])
         .pipe(plumber())

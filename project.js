@@ -3,35 +3,56 @@ var ftpd = require('./lib/ftpd');
 var flags = require('simple-flags');
 var io = require('socket.io-client');
 var ss = require('socket.io-stream');
+var socketPingPong = require('./lib/socket-pingpong');
+var utilsFn = require('./lib/utils');
+var docker = require('./lib/docker');
 
-findHostName('raspberrypi.local', 22, (pandoraIps) => {
-    if (!pandoraIps) {
-        console.error("No Pandora found on the network.")
-        return;
+// var pandoraPort = 24325
+var pandoraPort = 24326
+    // var pandoraPort = 22
+    //
+var pp, socket;
+module.exports = () => {
+
+    this.find = (callback) => {
+        findHostName('raspberrypi', pandoraPort, (pandoraIps) => {
+            if (!pandoraIps) {
+                callback("No Pandora found on the network.")
+                return;
+            }
+
+            if (pandoraIps.length > 1) {
+                callback("Many Pandora's were found in the network.")
+                return;
+            }
+
+            var pandoraIp = pandoraIps[0];
+
+            console.log('Pandora found in: ' + pandoraIp)
+
+            socket = ss(io.connect(`http://${pandoraIp}:${pandoraPort}`));
+
+            pp = socketPingPong(socket);
+
+            var utils = utilsFn({
+                socket,
+                pp
+            });
+
+            callback(null, pandoraIp)
+        });
     }
 
-    if (pandoraIps.length > 1) {
-        console.error("Many Pandora's were found in the network.")
-        return;
-    }
 
-    var pandoraIp = pandoraIps[0];
-
-    console.log('Pandora found in: ' + pandoraIp)
 
     var options = flags({
-        args: ['name', 'path'],
-        "name" : "newProject",
-        "path" : "/home/assis/Projects"
-    });
+        'all': false,
+        'cli': true
+    })
 
-    var socket = ss(io.connect(`http://${pandoraIp}:7777`));
-    console.log(options)
-    socket
-        .emit('hello', 'client!')
-        .on('hello', (data) => {
-            console.log('Hello ' + data)
-        })
-
-
-});
+    if (options.cli) {
+        if(options.docker){
+            docker({utils, pp, options})
+        }
+    }
+}
