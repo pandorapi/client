@@ -1,0 +1,12 @@
+#infoContainer.modal(tabindex='-1', role='dialog', aria-labelledby='myModalLabel')
+    .modal-dialog(role='document')
+        .modal-content
+            .modal-header
+                button.close(type='button', data-dismiss='modal', aria-label='Close')
+                    span(aria-hidden='true') &times;
+                h4#myModalLabel.modal-title {{container.name}}
+            .modal-body
+                pre.code {{{containerJson}}}
+            .modal-footer
+                button.btn.pull-left.btn-danger(type='button',v-on:click="removeContainer") Delete container
+                button.btn.btn-default(type='button', data-dismiss='modal') Ok

@@ -1,2 +1,132 @@
-body
-   color #666
+@import 'loader.styl'
+@import "../../bower_components/stylus-essential/essential.styl"
+@import "../../bower_components/custom-alert/dist/styl/variables.styl"
+$bootstrap =true
+@import "../../bower_components/custom-alert/dist/styl/structure.styl"
+
+
+
+#loader
+  background-color #FFC926
+  position: fixed;
+  width: 100vw
+  height: 100vh
+  z-index: 100 * 10 * 10
+  &.end
+    e-transition(height, 2s)
+    height: 0vh
+  &.start
+    e-transition(height, 2s)
+  .loader
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    position: fixed;
+    border: 4px solid #fff;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation: loader 2s infinite ease;
+    .loader-inner
+      vertical-align: top;
+      display: inline-block;
+      width: 100%;
+      background-color: #fff;
+      animation: loader-inner 2s infinite ease-in;
+
+#content
+  *
+     e-transition(all)
+
+.header
+   background-color: #ECC41B
+   padding 10px
+   height: 50px
+   color #fff
+   font-size: 1.3em
+   .ip
+      float left
+   .logo
+     float: left;
+     display: inline-block;
+     width: 25px;
+     height: 24px;
+     position: relative;
+     border: 4px solid #fff;
+     top: 10%;
+     transform: translate(-50%, -50%)
+     transform: rotate(0deg)
+     margin-right: 10px
+     &.loading
+       animation: loader 2s infinite ease;
+       .logo-inner
+         animation: loader-inner 2s infinite ease-in;
+     .logo-inner
+       vertical-align: top;
+       display: inline-block;
+       width: 100%;
+       background-color: #fff;
+       height: 100%
+   .panel
+      background-color: transparent;
+      border: none
+      box-shadow: none
+      float right
+      a
+         padding: 0px 5px
+         color #fff
+         i
+            font-size: 1em
+.aditional
+   label
+      span
+         float left
+      a
+         float left
+         margin-left: 10px
+   .item
+      input
+         width: calc(100% - 20px)
+         float left
+      a
+         float right
+
+.listItens
+   .item
+      &.removing
+         pointer-events: none;
+         opacity: 0.5;
+         background-color: #E2E2E2
+         a
+            color #666
+         *
+            pointer-events: none;
+      .left
+         float: left;
+         padding 10px
+      .right
+         padding 10px
+         float: right;
+         a
+            font-size: 1.5em
+            margin 10px
+      .desc
+         display: none
+         padding 10px
+      .name
+         font-size: 1.5em
+
+@keyframes spin { 100% { transform:rotate(360deg); } }
+
+.glyphicon-refresh
+   animation:spin 2s linear infinite;
+
+pre.code
+    outline: 1px solid #ccc;
+    padding: 5px;
+    margin: 5px;
+   .string { color: green; }
+   .number { color: darkorange; }
+   .boolean { color: blue; }
+   .null { color: magenta; }
+   .key { color: red; }

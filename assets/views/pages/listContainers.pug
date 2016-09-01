@@ -1,0 +1,11 @@
+ul#listContainers.list-group.listItens
+   li.list-group-item.item(v-for="container in containers",v-bind:class="{'removing': container.removing}")
+      .row
+         .left
+            .name {{container.name}}
+         .right
+            a.info(v-on:click="containerInfo($index)")
+               i.glyphicon.glyphicon-info-sign
+            a.toggle(v-on:click="containerToggle($index)")
+               i.glyphicon(v-bind:class="['glyphicon', container.refresh ? 'glyphicon-refresh w3-spin'  : container.action ? 'glyphicon-play' : 'glyphicon-stop']")
+      .row.desc

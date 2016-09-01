@@ -43,7 +43,7 @@ gulp.task('clean', function() {
 })
 
 gulp.task('copy', function() {
-    gulp.src(paths.bootstrap + 'fonts/**/*').pipe(gulp.dest(paths.public.fonts))
+    gulp.src(paths.bower + 'bootstrap/dist/fonts/**/*').pipe(gulp.dest(paths.public.fonts))
     gulp.src(paths.assets.images + '**/*').pipe(gulp.dest(paths.public.images))
 });
 
@@ -92,9 +92,15 @@ gulp.task('scripts', function() {
             paths.bower + "jquery/dist/jquery.min.js",
             paths.bower + "bootstrap/dist/js/bootstrap.min.js",
             paths.bower + "jquery-rest-client/dist/jquery.restclient.min.js",
-            // paths.toastr + "toastr.min.js",
+            paths.bower + "formPopulate/jquery.formpopulate.js",
+            paths.bower + "serializeObject/serializeObject.jquery.js",
+            paths.bower + "toastr/toastr.min.js",
             paths.bower + 'vue/dist/vue.min.js',
-            paths.assets.js + '*.js'
+            paths.bower + 'custom-alert/dist/js/custom-alert.js',
+            paths.assets.js + 'config.js',
+            paths.assets.js + 'gui.js',
+            paths.assets.js + 'controllers/**/*.js',
+            paths.assets.js + 'main.js'
         ])
         .pipe(plumber())
         .pipe(concat('scripts.js'))

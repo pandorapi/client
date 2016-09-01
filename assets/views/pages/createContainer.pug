@@ -1,0 +1,42 @@
+#createContainer
+   form#project(v-on:submit="onSubmit")
+      .form-group
+           laber(for="selectContainer") Project Name
+           input.form-control(name="name",placeholder="Project name",value="{{name}}")
+      .form-group#selectImage
+           laber(for="selectContainer") Image
+           select.form-control(name="image", v-model="getContainerInfo")
+               option(v-for="image in images", v-bind:value="image.Id") {{ image.text || image.RepoTags }}
+
+      .form-group.aditional
+           .col.xs-12
+               label(for="selectContainer")
+                   span Volumes
+                   a(v-on:click="addVolume")
+                       i.glyphicon.glyphicon-plus
+           .col.xs-12
+               .row.item(v-for="volume in volumes")
+                   .col-xs-6
+                       input.form-control(name="volumeLocal",placeholder="Local",value="{{volume.local}}")
+                   .col-xs-6
+                       input.form-control(name="volumeRemote", placeholder="Remote",value="{{volume.remote}}")
+                       a(v-on:click="removeVolume")
+                           i.glyphicon.glyphicon-remove
+
+      .form-group.aditional
+           .col.xs-12
+               label(for="selectContainer")
+                   span Port
+                   a(v-on:click="addPort")
+                       i.glyphicon.glyphicon-plus
+           .col.xs-12
+               .row.item(v-for="port in ports")
+                   .col-xs-6
+                       input.form-control(name="portLocal",placeholder="Local",value="{{port.local}}")
+                   .col-xs-6
+                       input.form-control(name="portRemote", placeholder="Remote",value="{{port.remote}}")
+                       a(v-on:click="removePort")
+                           i.glyphicon.glyphicon-remove
+
+      .form-group
+           button.btn.btn-lg.btn-success Create
